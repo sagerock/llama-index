@@ -1,13 +1,13 @@
 import os, streamlit as st
 
 # Uncomment to specify your OpenAI API key here (local testing only, not in production!), or add corresponding environment variable (recommended)
-# os.environ['OPENAI_API_KEY']= ""
+os.environ['OPENAI_API_KEY']= "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"
 
 from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader, LLMPredictor, PromptHelper
 from langchain import OpenAI
 
 # This example uses text-davinci-003 by default; feel free to change if desired
-llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="text-davinci-003"))
+llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="gpt-3.5-turbo"))
 
 # Configure prompt parameters and initialise helper
 max_input_size = 4096
@@ -21,6 +21,7 @@ documents = SimpleDirectoryReader('data').load_data()
 index = GPTSimpleVectorIndex(
     documents, llm_predictor=llm_predictor, prompt_helper=prompt_helper
 )
+
 
 # Define a simple Streamlit app
 st.title("Ask Llama")
